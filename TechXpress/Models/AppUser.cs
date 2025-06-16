@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace TechXpress.Models
 {
     public class AppUser : IdentityUser<int>
     {
         public Gender Gender { get; set; }
+        [MinLength(3)]
+        [RegularExpression("^[A-Za-z]+$", ErrorMessage = "Only letters A-Z or a-z are allowed.")]
         public string Country { get; set; }
+        [MinLength(3)]
+        [RegularExpression("^[A-Za-z]+$", ErrorMessage = "Only letters A-Z or a-z are allowed.")]
         public string City { get; set; }
         public string? Address { get; set; }
         public DateTime DateOfBirth { get; set; }
