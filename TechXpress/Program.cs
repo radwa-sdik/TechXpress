@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TechXpress.Interface;
 using TechXpress.Models;
+using TechXpress.Repositories;
 
 namespace TechXpress
 {
@@ -18,6 +20,9 @@ namespace TechXpress
             builder.Services.AddIdentity<AppUser, IdentityRole<int>>()
                 .AddEntityFrameworkStores<AppDBContext>()
                 .AddDefaultTokenProviders();
+            builder.Services.AddScoped<IProductRepo,ProductRepo>();
+
+
             #region
             //builder.Services.Configure<IdentityOptions>(options =>
             //{
