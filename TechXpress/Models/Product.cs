@@ -5,6 +5,8 @@ namespace TechXpress.Models
 {
     public class Product
     {
+        private double rating;
+
         public int ProductId { get; set; }
         [MinLength(3)]
         public string Name { get; set; } = null!;
@@ -22,9 +24,11 @@ namespace TechXpress.Models
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public DateTime UpdatedAt { get; set; } 
+        public DateTime? UpdatedAt { get; set; }    
         public bool IsActive { get; set; } = true;
         public Category Category { get; set; } = null!;
+        [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
+        public double Rating { get => Reviews.Count != 0 ? Reviews.Average(r => r.Rating) : 0; set => rating = value; }
         public ICollection<ProductReview> Reviews { get; set; } = new List<ProductReview>();
     }
 }

@@ -100,7 +100,45 @@ namespace TechXpress.Models
                 .Property(p => p.Status)
                 .HasConversion<string>();
 
+            builder.Entity<AppUser>()
+                .Property(u => u.RegistrationDate)
+                .HasDefaultValueSql("getdate()");
 
+            builder.Entity<Product>()
+                .Property(p => p.IsActive)
+                .HasDefaultValue(true);
+
+            builder.Entity<Product>()
+                .Property (p => p.CreatedAt)
+                .HasDefaultValueSql("getdate()");
+
+            builder.Entity<Product>()
+                .Property(p => p.ImageUrl)
+                .HasDefaultValue("Placeholder.jpeg");
+
+            builder.Entity<Product>()
+                .Property(p => p.Rating)
+                .HasDefaultValue(0);
+
+            builder.Entity<Cart>()
+                .Property(c => c.CreatedAt)
+                .HasDefaultValueSql("getdate()");
+
+            builder.Entity<CartItem>()
+                .Property(ci => ci.Quantity)
+                .HasDefaultValue(1);
+
+            builder.Entity<Order>()
+                .Property(o => o.OrderDate)
+                .HasDefaultValueSql("getdate()");
+
+            builder.Entity<Payment>()
+                .Property(pm => pm.PaymentDate)
+                .HasDefaultValueSql("getdate()");
+
+            builder.Entity<ProductReview>()
+                .Property(pr => pr.UpdatedAt)
+                .HasDefaultValueSql("getdate()");
         }
     }
 }

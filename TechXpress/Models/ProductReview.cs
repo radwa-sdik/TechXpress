@@ -14,7 +14,7 @@ namespace TechXpress.Models
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
         public int Rating { get; set; } // 1-5
         public string? Comment { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         public AppUser Customer { get; set; } = null!;
         public Product Product { get; set; } = null!;

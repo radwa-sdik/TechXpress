@@ -5,6 +5,8 @@ namespace TechXpress.Models
 {
     public class Order
     {
+        private decimal totalAmount;
+
         public enum OrderStatus
         {
             Processing,
@@ -18,7 +20,7 @@ namespace TechXpress.Models
         public int CustomerId { get; set; }
         public AppUser Customer { get; set; } = null!;
         public DateTime OrderDate { get; set; } = DateTime.Now;
-        public decimal TotalAmount { get; set; }
+        public decimal TotalAmount { get => Items.Count != 0 ? Items.Sum(i => i.UnitPrice * i.Quantity) : 0; set => totalAmount = value; }
         [MinLength(3, ErrorMessage = "Shipping address must be at least 3 characters long.")]
         public string ShippingAddress { get; set; } = null!;
         public OrderStatus Status { get; set; } = OrderStatus.Processing;

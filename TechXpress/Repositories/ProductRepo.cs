@@ -119,8 +119,7 @@ namespace TechXpress.Repositories
         {
             return await DBContext.Products
                 .Include(p => p.Reviews)
-                .Where(p => p.Reviews.Any())
-                .OrderByDescending(p => p.Reviews.Average(r => r.Rating))
+                .OrderByDescending(p => p.Rating)
                 .Take(count)
                 .ToListAsync();
         }
